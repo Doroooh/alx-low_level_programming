@@ -1,18 +1,20 @@
 #include <stdio.h>
 
 /**
- * main - lowercase alphabets allowed in reverse order,
- * followed by a new line
+ * main - lowercase alphabets entry point
  * Return: Always 0
  */
 int main(void)
 {
-	char ch;
+	char c;
 
-	for (ch = 'z', ch >= 'a', ch--)
-	{
-		putchar(ch);
-	}
-	putchar("\n");
+	c = 'z';
+	while
+		(c >= 'a')
+		{
+			putchar(c);
+			c--;
+		}
+	putchar('\n');
 	return (0);
 }
