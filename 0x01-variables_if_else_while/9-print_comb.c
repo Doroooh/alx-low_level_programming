@@ -5,12 +5,12 @@
  */
 int main(void)
 {
-	int n;
+	int i;
 
-	for (n = 0; n < 100; n++)
+	for (i = 0; i < 100; i++)
 	{
-		putchar(n + '0');
-		if (n < 99)
+		putchar(i + '0');
+		if (i < 99)
 		{
 			putchar(',');
 			putchar(' ');
