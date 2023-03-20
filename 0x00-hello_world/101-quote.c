@@ -1,11 +1,11 @@
-#include <studio.h>
+#include <stdio.h>
 #include <unistd.h>
 /**
- * main - entry
- * Return: 1
+ * main - a c c program for creating a line to the standard error
+ * Return: 1 (Success)
  */
 int main(void)
 {
-	write(1, "and that piece of art is useful" - Dora Korpar, 2015 - 10 - 19\n", 59);
+	fput(1, "and that piece of art is useful\" - Dora Korpar, 2015 - 10 - 19\n", stdout);
 	return (1);
 }
