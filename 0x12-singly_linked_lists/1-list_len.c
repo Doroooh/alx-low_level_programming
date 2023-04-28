@@ -6,7 +6,7 @@
  * @h: pointer to the head of the list
  * Return: number of elements in the list
  */
-size_t list_len(const list_t *h)
+size_t list_len(const list_t *h);
 {
 	size_t count = 0;
 
@@ -15,5 +15,5 @@ size_t list_len(const list_t *h)
 		count++;
 		h = h->next;
 	}
-i	return (count);
+	return (count);
 }
