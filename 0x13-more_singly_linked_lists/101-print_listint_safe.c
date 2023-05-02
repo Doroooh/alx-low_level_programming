@@ -1,24 +1,76 @@
 #include "lists.h"
+#include <stdio.h>
 
 /**
- * reverse_listint - reverses a linked list
- * @head: pointer to the first node in the list
+ * looped_listint_len - Counts the number of unique nodes
+ * in a looped listint_t linked list.
+ * @head: A pointer to the head of the listint_t to check.
  *
- * Return: pointer to the first node in the new list
+ * Return: If the list is not looped - 0.
+ * Otherwise - the number of unique nodes in the list.
  */
-listint_t *reverse_listint(listint_t **head)
+size_t looped_listint_len(const listint_t *head)
 {
-	listint_t *prev = NULL;
-	listint_t *current = *head;
-	listint_t *next = NULL;
+	const listint_t *tortoise, *hare;
+	size_t nodes = 0;
 
-	while (current != NULL)
+	if (head == NULL)
+		return (0);
+
+	tortoise = head;
+	hare = head;
+	while (hare && hare->next)
 	{
-		next = current->next;
-		current->next = prev;
-		prev = current;
-		current = next;
+		tortoise = tortoise->next;
+		hare = hare->next->next;
+
+		if (tortoise == hare)
+		{
+			do {
+				nodes++;
+				hare = hare->next;
+			} while (hare != tortoise);
+
+			return (nodes);
+		}
 	}
-	*head = prev;
-	return (*head);
+	return (nodes);
+}
+
+/**
+ * print_listint_safe - Prints a listint_t list safely.
+ * @head: A pointer to the head of the listint_t list.
+ *
+ * Return: The number of nodes in the list.
+ */
+size_t print_listint_safe(const listint_t *head)
+{
+	size_t nodes, index = 0;
+	const listint_t *tmp;
+
+	nodes = looped_listint_len(head);
+
+	if (nodes == 0)
+	{
+		tmp = head;
+
+		while (tmp != NULL)
+		{
+			printf("[%p] %d\n", (void *)tmp, tmp->n);
+			tmp = tmp->next;
+			nodes++;
+		}
+	}
+	else
+	{
+		tmp = head;
+
+		for (index = 0; index < nodes; index++)
+		{
+			printf("[%p] %d\n", (void *)tmp, tmp->n);
+			tmp = tmp->next;
+		}
+		printf("-> [%p] %d\n", (void *)tmp, tmp->n);
+	}
+	return (nodes);
 }
