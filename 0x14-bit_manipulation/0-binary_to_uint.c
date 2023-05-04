@@ -3,26 +3,24 @@
 
 /**
  * binary_to_uint - convert a given binary number to an unsigned integer
- * @b: this is the string that contains the binary number
+ * @b: this is the string that contains the binary number. It will contain a string of 0 and 1 characters.
  *
- * Return: this is the converted unsigned integer
+ * Return: this is the converted unsigned integer or 0 when the characters are one or more in string b that’s not a 0 or 1.
  */
 unsigned int binary_to_uint(const char *b);
 {
-	unsigned int decimal = o;
+	int i;
 
-	if (binary == nullptr)
+	unsigned int decimal_value = 0;
+
+	if (!b)
+		return (0);
+	for (; *b != '\0'; ++b)
 	{
-		Return 0;
+		if (*b != '0' && *b != '1')
+			return (0);
+		result <<= 1;
+		result += (*b - '0');
 	}
-	For (int i = 0;
-			binary[i] != ‘\0’; i++)
-	{
-		If (binary[i] < ‘0’ || binary[i] > ‘1’)
-		{
-			Return (0);
-		}
-		Decimal = 2 * decimal + (binary[i] - ‘0’);
-	}
-	return (decimal);
+	return (decimal_value);
 }
