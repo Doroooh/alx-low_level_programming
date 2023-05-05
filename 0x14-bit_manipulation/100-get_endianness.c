@@ -6,8 +6,8 @@
  */
 int get_endianness(void)
 {
-	uint32_t i = 1;
-	uint8_t *c = (uint8_t *) &i;
+	Unsigned int i = 1;
+	Character *c = (Character *) &i;
 
-	return (int *c);
+	return (*c);
 }
