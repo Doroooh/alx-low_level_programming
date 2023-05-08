@@ -2,27 +2,27 @@
 #include <stdlib.h>
 
 /**
- * read_textfile- Read text file print to STDOUT.
- * @filename: text file being read
- * @letters: number of letters to be read
- * Return: w- actual number of bytes read and printed
- *        0 when function fails or filename is NULL.
+ * read_textfile- The prompt will be reading the text file print to the STDOUT.
+ * @filename: this the text file being read in this project
+ * @letters: this is the total number of letter that will be read
+ * Return: a- this is the number of bytes that will be read and printed for this project, if the filename is NULL or function has failed
+ * return 0
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	char *buf;
-	ssize_t fd;
-	ssize_t w;
-	ssize_t t;
+	char *buffer;
+	ssize_t file_descriptor;
+	ssize_t a;
+	ssize_t b;
 
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
+	file_descriptor = open(filename, O_RDONLY);
+	if (file_descriptor == -1)
 		return (0);
-	buf = malloc(sizeof(char) * letters);
-	t = read(fd, buf, letters);
-	w = write(STDOUT_FILENO, buf, t);
+	buffer = malloc(sizeof(char) * letters);
+	b = read(file_descriptor, buffer, letters);
+	a = write(STDOUT_FILENO, buffer, b);
 
-	free(buf);
-	close(fd);
-	return (w);
+	free(buffer);
+	close(file_descriptot);
+	return (a);
 }
