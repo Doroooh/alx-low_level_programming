@@ -2,12 +2,13 @@
 
 /**
  * get_endianness - this will check whether a machine is big or small
- * Return: the result will be 0 for a big one, one for little
+ * Return: the result will be 0 for a big endian, 1 for little endian
  */
 int get_endianness(void)
 {
-	Unsigned int i = 1;
-	Character *c = (Character *) &i;
-
-	return (*c);
+	unsigned int k = 1;
+	char *c = (char *)&k;
+	if (*c)
+		return (1);
+	return (0);
 }
