@@ -1,27 +1,50 @@
 #include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 /**
- * read_textfile- Reads the text file print to STDOUT
- * file_name: this is the text file the program is reading
- * the_letters: this is the number of letters that will be read
- * Return: p- the actual number of bytes read and printed, gives 0 when function fails or filename is NULL.
+ * read_textfile - Reads a text file and prints it to the POSIX standard output.
+ * @filename: The name of the file to read.
+ * @letters: The number of letters to read and print.
+ *
+ * Return: The actual number of letters read and printed.
+ *         If the file cannot be opened or read, return 0.
+ *         If the filename is NULL, return 0.
+ *         If write fails or does not write the expected amount of bytes, return 0.
  */
-ssize_t read_textfile(const char *file_name, size_t the_letters)
+ssize_t read_textfile(const char *filename, size_t letters)
 {
-	char *buf;
-	ssize_t fd;
-	ssize_t p;
-	ssize_t t;
+    ssize_t bytes_read = 0;
+    char *buffer;
+    FILE *file;
 
-	fd = open(file_name, O_RDONLY);
-	if (fd == -1)
-		return (0);
-	buf = malloc(sizeof(char) * the_letters);
-	t = read(fd, buf,the_letters);
-	p = write(STDOUT_FILENO, buf, t);
+    if (filename == NULL)
+        return 0;
 
-	free(buf);
-	close(fd);
-	return (p);
+    file = fopen(filename, "r");
+    if (file == NULL)
+        return 0;
+
+    buffer = malloc(sizeof(char) * (letters + 1));
+    if (buffer == NULL)
+    {
+        fclose(file);
+        return 0;
+    }
+
+    bytes_read = fread(buffer, sizeof(char), letters, file);
+    if (bytes_read == -1)
+    {
+        fclose(file);
+        free(buffer);
+        return 0;
+    }
+
+    buffer[bytes_read] = '\0';
+    printf("%s", buffer);
+
+    fclose(file);
+    free(buffer);
+
+    return bytes_read;
 }
