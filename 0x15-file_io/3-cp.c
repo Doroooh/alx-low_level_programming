@@ -7,12 +7,9 @@
 
 #define BUFFER_SIZE 1024
 
-char *create_buffer(char *file);
-void close_file(int file);
-
 /**
- * creates_buffer - Allocates 1024 bytes for a buffer.
- * file: The name of the file buffer is storing chars for.
+ * creates_buffer - Allocates the 1024 bytes for a buffer.
+ * file: The name of file buffer is storing chars for.
  *
  * Return: pointer to newly-allocated buffer.
  */
@@ -61,7 +58,7 @@ char *creates_buffer(char *file)
 		}
 		if (close(file_from) == -1) 
 		{
-			drintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
 			exit(100);
 		}
 		if (close(file_to) == -1) 
