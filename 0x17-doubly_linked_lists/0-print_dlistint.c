@@ -1,7 +1,4 @@
-/*
- * File: 0-print_dlistint.c
- *
- * #include "lists.h"
+#include "lists.h"
 
 /**
  * print_dlistint - Prints all the elements of a dlistint_t list.
