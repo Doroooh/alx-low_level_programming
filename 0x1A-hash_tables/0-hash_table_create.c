@@ -1,33 +1,32 @@
-#include "custom_hash_tables.h"
+#include "hash_tables.h"
 
 /**
- * custom_hash_table_create - Initialize a new custom hash table.
- * @size: Desired size of the hash table.
+ * hash_table_create - Creates a hash table.
+ * @size: the size, in number of nodes, to make the new hash table.
  *
- * Returns: Pointer to the newly created hash table.
+ * Return: a pointer to the newly created hash table.
  */
-custom_hash_table_t *custom_hash_table_create(unsigned long int size)
+hash_table_t *hash_table_create(unsigned long int size)
 {
-	custom_hash_table_t *htable;
-	unsigned long int index;
+	unsigned int i = 0;
+	hash_table_t *ht = malloc(sizeof(hash_table_t));
 
-	/* Allocate memory for the hash table */
-	htable = malloc(sizeof(custom_hash_table_t));
-	if (htable == NULL)
-		return NULL;
-
-	/* Initialize hash table properties */
-	htable->size = size;
-	htable->buckets = malloc(sizeof(custom_hash_node_t *) * size);
-	if (htable->buckets == NULL)
+	if (ht == NULL)
 	{
-		free(htable);
-		return NULL;
+		fprintf(stderr, "Error: malloc failed\n");
+		return (NULL);
 	}
 
-	/* Initialize each bucket to NULL */
-	for (index = 0; index < size; index++)
-		htable->buckets[index] = NULL;
+	ht->size = size;
+	ht->array = malloc(sizeof(hash_node_t *) * size);
+	if (ht->array == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		return (NULL);
+	}
 
-	return htable;
+	for (; i < size; i++)
+		ht->array[i] = NULL;
+
+	return (ht);
 }
