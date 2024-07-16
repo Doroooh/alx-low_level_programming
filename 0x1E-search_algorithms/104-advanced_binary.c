@@ -13,15 +13,15 @@
 int rec_search(int *array, size_t size, int value)
 {
 	size_t half = size / 2;
-	size_t i;
+	size_t k;
 
 	if (array == NULL || size == 0)
 		return (-1);
 
 	printf("Searching in array");
 
-	for (i = 0; i < size; i++)
-		printf("%s %d", (i == 0) ? ":" : ",", array[i]);
+	for (k = 0; k < size; k++)
+		printf("%s %d", (k == 0) ? ":" : ",", array[k]);
 
 	printf("\n");
 

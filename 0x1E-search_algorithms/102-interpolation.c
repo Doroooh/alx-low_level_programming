@@ -1,13 +1,12 @@
 #include "search_algos.h"
 
 /**
- * interpolation_search - searches for a value in an array of
- * integers using the Interpolation search algorithm
+ * interpolation_search - this will search for teh value in the integers arrays with the use of interpolation
  *
- * @array: input array
- * @size: size of the array
+ * @array: the input array
+ * @size: array size
  * @value: value to search in
- * Return: index of the number
+ * Return: index  number
  */
 int interpolation_search(int *array, size_t size, int value)
 {
