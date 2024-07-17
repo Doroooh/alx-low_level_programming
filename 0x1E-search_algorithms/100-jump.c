@@ -1,42 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "search_algos.h"
+#include <math.h>
+
+int min_value(int num1, int num2);
 
 /**
- * jump_search - searches for a value in an array of integers
+ * jump_search - Searches value in array of ints using the Jump search algo
  *
- * @array: a pointer to the first element of the array to search in
- * @size: the number of elements in array
- * @value: the value to search for
+ * @array: Array to search
  *
- * Return: the index where value is located or -1 on failure or not found
+ * @size: Size of the array
+ *
+ * @value: Value to search
+ *
+ * Return: First index where value is located or -1 for NULL array
  */
 
 int jump_search(int *array, size_t size, int value)
 {
-	size_t strt = 0, jmp, end = 0;
+	/* Define jump number by square root of size */
+	int jump = sqrt(size);
+	int index = 0;
 
-	if (!array || size == 0)
+	/* Check inputs */
+	if (!array)
+	{
 		return (-1);
-
-	jmp = sqrt(size);
-
-	while (end < size && array[end] < value)
-	{
-		printf("Value checked array[%lu] = [%d]\n", end, array[end]);
-		end += jmp;
 	}
 
-	strt = end - jmp;
-	printf("Value found between indexes [%lu] and [%lu]\n", strt, end);
-
-	end = end >= size ? size - 1 : end;
-
-	while  (strt <= end)
+	/* Find block of array where value is found in jump_step */
+	while (index < (int)size && array[index] < value)
 	{
-		printf("Value checked array[%lu] = [%d]\n", strt, array[strt]);
-		if (array[strt] == value)
-			return ((int)strt);
-		strt++;
+		printf("Value checked array[%d] = [%d]\n", index, array[index]);
+		index += jump;
 	}
 
+	/* Set jumpsize to index at beginning of array block to search*/
+	index -= jump;
+
+	printf("Value found between indexes [%d] and [%d]\n", index, index + jump);
+
+	/* Value found in block of size jump_step. Linearly find value */
+	while (index <= (index + jump) && index < (int)size)
+	{
+		printf("Value checked array[%d] = [%d]\n", index, array[index]);
+
+		/* Found return value at index */
+		if (array[index] == value)
+		{
+			return (index);
+		}
+		index++;
+	}
 	return (-1);
 }
