@@ -3,30 +3,28 @@
 #include "search_algos.h"
 
 /**
- * linear_search - searches for a value in an array of
- * integers using the Linear search algorithm
+ * linear_search - it Searches the value in the array of ints using the Linear search algo
  *
- * @array: input array
- * @size: size of the array
- * @value: value to search in
- * Return: Always EXIT_SUCCESS
+ * @array: Array to search
+ *
+ * @size: Size of the array
+ *
+ * @value: Value to search
+ *
+ * Return: First index where value is located or -1 for NULL array
  */
 
 int linear_search(int *array, size_t size, int value)
 {
-	size_t x;
+	unsigned int index;
 
-	if (array == NULL)
+	for (index = 0; array && index < size; index++)
 	{
-		return (-1);
-	}
+		printf("Value checked array[%d] = [%d]\n", index, array[index]);
 
-	for (x = 0; x < size; x++)
-	{
-		printf("Value checked array[%li] = [%i]\n", x, array[x]);
-		if (array[x] == value)
+		if (array[index] == value)
 		{
-			return (x);
+			return (index);
 		}
 	}
 	return (-1);
