@@ -14,18 +14,24 @@
  * Return: First index where value is located or -1 for NULL array
  */
 
+
 int linear_search(int *array, size_t size, int value)
 {
-	unsigned int index;
+	int idx;
 
-	for (index = 0; array && index < size; index++)
+	if (!array)
+		return (-1);
+
+	idx = 0;
+	while (idx < (int) size)
 	{
-		printf("Value checked array[%d] = [%d]\n", index, array[index]);
-
-		if (array[index] == value)
-		{
-			return (index);
-		}
+		printf("Value checked array[%d] = [%d]\n", idx, array[idx]);
+		if (array[idx] == value)
+			return (idx);
+		idx++;
 	}
+
 	return (-1);
 }
+
+
